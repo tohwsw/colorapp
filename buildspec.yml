@@ -11,6 +11,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - ls -ltr
+      - cd src/gateway
       - docker build -t $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION . 
       - docker tag $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION     
   post_build:
