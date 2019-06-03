@@ -19,7 +19,8 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
       - docker push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - cd ../..
       - printf '[{"name":"colorgateway","imageUri":"%s"}]' $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
-  files: '**/*'
+  files: imagedefinitions.json
