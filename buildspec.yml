@@ -18,5 +18,5 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker manifest push $REPOSITORY_URI:arm64$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - docker push $REPOSITORY_URI:arm64$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo Docker image pushed
