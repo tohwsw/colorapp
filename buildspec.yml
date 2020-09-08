@@ -13,12 +13,10 @@ phases:
       - ls -ltr
       - cd src/gateway
       - docker build -t $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION . 
-      - docker tag $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:arm64
-      - docker manifest create $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:arm64
-      - docker manifest annotate --arch arm64 $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:arm64
+      - docker tag $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION $REPOSITORY_URI:arm64$CODEBUILD_RESOLVED_SOURCE_VERSION
   post_build:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker manifest push $REPOSITORY_URI:$CODEBUILD_RESOLVED_SOURCE_VERSION
+      - docker manifest push $REPOSITORY_URI:arm64$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo Docker image pushed
